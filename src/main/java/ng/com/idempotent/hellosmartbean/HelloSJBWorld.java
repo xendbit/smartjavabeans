@@ -4,11 +4,19 @@ import nxt.smartcontract.api.Account;
 import nxt.smartcontract.api.Contract;
 
 
-public class HelloSJBWorld implements Contract {        
-    private Account account;
+public class HelloSJBWorld implements Contract {            
     private String greeting = "Hello Smart Java Beans World";
     private String isPrivate;
+    private Account account;
 
+    public void setAccount(Account account) {
+        this.account = account;
+    }
+
+    public Account getAccount() {
+        return account;
+    }
+    
     public String getIsPrivate() {
         return isPrivate;
     }
@@ -17,14 +25,6 @@ public class HelloSJBWorld implements Contract {
         this.isPrivate = isPrivate;
     }
 
-    public Account getAccount() {
-        return account;
-    }
-
-    public void setAccount(Account account) {
-        this.account = account;
-    }    
-    
     public String getHello() {
         return "Hello SJB World";
     }
@@ -40,5 +40,5 @@ public class HelloSJBWorld implements Contract {
     @Override
     public String toString() {
         return super.toString();
-    }
+    }   
 }
