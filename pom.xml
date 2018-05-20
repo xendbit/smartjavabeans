@@ -7,7 +7,7 @@
     <packaging>jar</packaging>
     <dependencies>
         <dependency>
-            <groupId>${project.groupId}</groupId>
+            <groupId>ng.com.idempotent</groupId>
             <artifactId>Xendcoin</artifactId>
             <version>1.0.0</version>
         </dependency>

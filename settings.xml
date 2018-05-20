@@ -1,0 +1,38 @@
+<settings xsi:schemaLocation='http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd'          xmlns='http://maven.apache.org/SETTINGS/1.0.0' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'>
+    <servers>
+        <server>
+            <id>segun-maven-repo</id>
+            <username>segun</username>
+            <password>026a74401b86b0f08b1563a138649aa79108cf15</password>
+        </server>
+    </servers>
+    
+    <profiles>
+        <profile>
+            <repositories>
+                <repository>
+                    <snapshots>
+                        <enabled>false</enabled>
+                    </snapshots>
+                    <id>bintray-segun-segun-maven-repo</id>
+                    <name>bintray</name>
+                    <url>https://dl.bintray.com/segun/segun-maven-repo</url>
+                </repository>
+            </repositories>
+            <pluginRepositories>
+                <pluginRepository>
+                    <snapshots>
+                        <enabled>false</enabled>
+                    </snapshots>
+                    <id>bintray-segun-segun-maven-repo</id>
+                    <name>bintray-plugins</name>
+                    <url>https://dl.bintray.com/segun/segun-maven-repo</url>
+                </pluginRepository>
+            </pluginRepositories>
+            <id>bintray</id>
+        </profile>
+    </profiles>
+    <activeProfiles>
+        <activeProfile>bintray</activeProfile>
+    </activeProfiles>
+</settings>
