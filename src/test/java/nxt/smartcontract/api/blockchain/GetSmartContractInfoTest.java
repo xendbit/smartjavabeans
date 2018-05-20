@@ -46,7 +46,7 @@ public class GetSmartContractInfoTest {
     @Test
     public void testGetSmartContractInfo() throws JsonProcessingException, IOException {
         System.out.println("testGetSmartContractInfo");
-        long id = 8080863714505069800L;
+        long id = 8921897535325924432L;
         SmartContract contract = new SmartContract(id);
         Account executingAccount = new Account("copper explain fated truck neat unite branch educated tenuous hum decisive notice");
         String result = GetSmartContractInfo.getSmartContractInfo(contract, executingAccount);

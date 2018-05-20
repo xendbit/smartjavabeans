@@ -56,7 +56,7 @@ public class ExecuteSmartContractTest {
     public void testExecuteGetSetSimpleType() throws IOException {
         System.out.println("testExecuteSetSimpleType");
         Account owner = new Account(1565770067262084023L);
-        long id = 8080863714505069800L;
+        long id = 8921897535325924432L;
 
         //Testing Get Simple Type --- Might fail if the smart contract have less than 1 confirmation
         String fullyQualifiedClassName = "ng.com.idempotent.hellosmartbean.HelloSJBWorld";
@@ -101,7 +101,7 @@ public class ExecuteSmartContractTest {
     public void testExecuteGetSetComplexType() throws IOException, ClassNotFoundException {
         System.out.println("testExecuteGetSetComplexType");
         Account owner = new Account(1565770067262084023L);
-        long id = 8080863714505069800L;
+        long id = 8921897535325924432L;
         Account executingAccount = new Account("copper explain fated truck neat unite branch educated tenuous hum decisive notice");
         
         String fullyQualifiedClassName = "ng.com.idempotent.hellosmartbean.HelloSJBWorld";
