@@ -23,7 +23,7 @@ import static org.junit.Assert.*;
  * @author aardvocate
  */
 public class ExecuteSmartContractTest {
-
+    
     public ExecuteSmartContractTest() {
     }
 
@@ -43,19 +43,15 @@ public class ExecuteSmartContractTest {
     public void tearDown() {
     }
 
-    @Test
-    public void testGetSmartContractInfo() {
-
-    }
 
     /**
      *
      * @throws IOException
      */
-    //@Test
+    @Test
     public void testExecuteGetSetSimpleType() throws IOException {
         System.out.println("testExecuteSetSimpleType");
-        Account owner = new Account(1565770067262084023L);
+        Account owner = new Account(1565770067262084023L);       
         long id = 8921897535325924432L;
 
         //Testing Get Simple Type --- Might fail if the smart contract have less than 1 confirmation
@@ -98,8 +94,35 @@ public class ExecuteSmartContractTest {
     }
 
     @Test
-    public void testExecuteGetSetComplexType() throws IOException, ClassNotFoundException {
-        System.out.println("testExecuteGetSetComplexType");
+    public void testExecuteGetComplexType() throws IOException, ClassNotFoundException {
+        System.out.println("testExecuteGetComplexType");
+        Account owner = new Account(1565770067262084023L);
+        long id = 8921897535325924432L;
+        Account executingAccount = new Account("copper explain fated truck neat unite branch educated tenuous hum decisive notice");
+        
+        String fullyQualifiedClassName = "ng.com.idempotent.hellosmartbean.HelloSJBWorld";
+        SmartContract smartContract = new SmartContract(owner, id, fullyQualifiedClassName);
+        
+        //Testing Get Complex Type --- Might fail if the set above have less than 1 confirmation
+        SmartMethod smartMethod = new SmartMethod("getAccount");
+        smartContract.setSmartMethod(smartMethod);
+
+        //result = "";
+        String result = ExecuteSmartContract.executeSmartContract(smartContract, executingAccount);
+        HashMap resultMap = new ObjectMapper().readValue(result, HashMap.class);
+        System.err.println(result);
+        System.err.println(resultMap);
+        assertTrue(resultMap.containsKey("smartContractResult"));
+        Class returnType = Class.forName("nxt.smartcontract.api.Account");
+        //This will fail if return type is wrong
+        Object returnedObject = new ObjectMapper().readValue(resultMap.get("smartContractResult").toString(), returnType);
+        Account c = (Account) returnedObject;
+        assertEquals(c.getPassphrase(), "ibaje eniyan koda ise oluwa duro");        
+    }
+    
+    @Test
+    public void testExecuteSetComplexType() throws IOException, ClassNotFoundException {
+        System.out.println("testExecuteSetComplexType");
         Account owner = new Account(1565770067262084023L);
         long id = 8921897535325924432L;
         Account executingAccount = new Account("copper explain fated truck neat unite branch educated tenuous hum decisive notice");
@@ -119,22 +142,6 @@ public class ExecuteSmartContractTest {
         assertTrue(resultMap.containsKey("transactionJSON"));
         assertTrue(resultMap.containsKey("transaction"));
         //String parameters = "Hello, New Gree"
-
-        //Testing Get Complex Type --- Might fail if the set above have less than 1 confirmation
-        smartMethod = new SmartMethod("getAccount");
-        smartContract.setSmartMethod(smartMethod);
-
-        //result = "";
-        result = ExecuteSmartContract.executeSmartContract(smartContract, executingAccount);
-        resultMap = new ObjectMapper().readValue(result, HashMap.class);
-        System.err.println(result);
-        System.err.println(resultMap);
-        assertTrue(resultMap.containsKey("smartContractResult"));
-        Class returnType = Class.forName("nxt.smartcontract.api.Account");
-        //This will fail if return type is wrong
-        Object returnedObject = new ObjectMapper().readValue(resultMap.get("smartContractResult").toString(), returnType);
-        Account c = (Account) returnedObject;
-        assertEquals(c.getPassphrase(), "ibaje eniyan koda ise oluwa duro");
     }
 
 }
