@@ -11,7 +11,6 @@ import java.io.IOException;
 import java.util.HashMap;
 import nxt.smartcontract.api.Account;
 import nxt.smartcontract.api.utils.SmartContract;
-import nxt.smartcontract.api.utils.SmartMethod;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
