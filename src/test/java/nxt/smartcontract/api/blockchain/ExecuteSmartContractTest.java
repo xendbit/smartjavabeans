@@ -43,16 +43,37 @@ public class ExecuteSmartContractTest {
     public void tearDown() {
     }
 
-
-    /**
-     *
-     * @throws IOException
-     */
-    @Test
-    public void testExecuteGetSetSimpleType() throws IOException {
+    //@Test
+    public void testExecuteSetSimpleType() throws IOException {
         System.out.println("testExecuteSetSimpleType");
         Account owner = new Account(1565770067262084023L);       
-        long id = 8921897535325924432L;
+        long id = 3623824126353402974L;
+
+        //Testing Get Simple Type --- Might fail if the smart contract have less than 1 confirmation
+        String fullyQualifiedClassName = "ng.com.idempotent.hellosmartbean.HelloSJBWorld";
+        SmartContract smartContract = new SmartContract(owner, id, fullyQualifiedClassName);
+        SmartMethod smartMethod = new SmartMethod("getGreeting");
+        smartContract.setSmartMethod(smartMethod);
+
+        Account executingAccount = new Account("copper explain fated truck neat unite branch educated tenuous hum decisive notice");
+        
+        //Testing Set Simple Type --- Might fail if the smart contract have less than 1 confirmation
+        smartMethod = new SmartMethod("setGreeting");
+        smartMethod.setParameterValues("Hello New SJB World");
+        smartMethod.setParameterTypes(String.class);
+        smartContract.setSmartMethod(smartMethod);
+
+        String result = ExecuteSmartContract.executeSmartContract(smartContract, executingAccount);
+        HashMap resultMap = new ObjectMapper().readValue(result, HashMap.class);
+        assertTrue(resultMap.containsKey("transactionJSON"));
+        assertTrue(resultMap.containsKey("transaction"));
+    }
+    
+    @Test
+    public void testExecuteGetSimpleType() throws IOException {
+        System.out.println("testExecuteSetSimpleType");
+        Account owner = new Account(1565770067262084023L);       
+        long id = 3623824126353402974L;
 
         //Testing Get Simple Type --- Might fail if the smart contract have less than 1 confirmation
         String fullyQualifiedClassName = "ng.com.idempotent.hellosmartbean.HelloSJBWorld";
@@ -66,38 +87,16 @@ public class ExecuteSmartContractTest {
         expResult = "Hello New SJB World";
         String result = ExecuteSmartContract.executeSmartContract(smartContract, executingAccount);
         HashMap resultMap = new ObjectMapper().readValue(result, HashMap.class);
+        System.out.println(resultMap);
         assertTrue(resultMap.containsKey("smartContractResult"));                
-        assertEquals(expResult, resultMap.get("smartContractResult"));
-        
-        //Testing Set Simple Type --- Might fail if the smart contract have less than 1 confirmation
-        smartMethod = new SmartMethod("setGreeting");
-        smartMethod.setParameterValues("Hello New SJB World");
-        smartMethod.setParameterTypes(String.class);
-        smartContract.setSmartMethod(smartMethod);
-
-        result = ExecuteSmartContract.executeSmartContract(smartContract, executingAccount);
-        resultMap = new ObjectMapper().readValue(result, HashMap.class);
-        assertTrue(resultMap.containsKey("transactionJSON"));
-        assertTrue(resultMap.containsKey("transaction"));
-        //String parameters = "Hello, New Gree"
-
-        //Testing Get Simple Type --- Might fail if the set above have less than 1 confirmation
-        smartMethod = new SmartMethod("getGreeting");
-        smartContract.setSmartMethod(smartMethod);
-
-        expResult = "Hello New SJB World";
-        result = ExecuteSmartContract.executeSmartContract(smartContract, executingAccount);
-        resultMap = new ObjectMapper().readValue(result, HashMap.class);
-        System.out.println(resultMap.get("smartContractResult"));
-        assertTrue(resultMap.containsKey("smartContractResult"));
-        assertEquals(resultMap.get("smartContractResult").toString(), expResult);
+        assertEquals(expResult, resultMap.get("smartContractResult"));        
     }
 
     @Test
     public void testExecuteGetComplexType() throws IOException, ClassNotFoundException {
         System.out.println("testExecuteGetComplexType");
         Account owner = new Account(1565770067262084023L);
-        long id = 8921897535325924432L;
+        long id = 3623824126353402974L;
         Account executingAccount = new Account("copper explain fated truck neat unite branch educated tenuous hum decisive notice");
         
         String fullyQualifiedClassName = "ng.com.idempotent.hellosmartbean.HelloSJBWorld";
@@ -120,11 +119,11 @@ public class ExecuteSmartContractTest {
         assertEquals(c.getPassphrase(), "ibaje eniyan koda ise oluwa duro");        
     }
     
-    @Test
+    //@Test
     public void testExecuteSetComplexType() throws IOException, ClassNotFoundException {
         System.out.println("testExecuteSetComplexType");
         Account owner = new Account(1565770067262084023L);
-        long id = 8921897535325924432L;
+        long id = 3623824126353402974L;
         Account executingAccount = new Account("copper explain fated truck neat unite branch educated tenuous hum decisive notice");
         
         String fullyQualifiedClassName = "ng.com.idempotent.hellosmartbean.HelloSJBWorld";
