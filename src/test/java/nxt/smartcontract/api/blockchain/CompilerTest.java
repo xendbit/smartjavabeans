@@ -10,7 +10,6 @@ import static org.junit.Assert.assertTrue;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.File;
 import java.io.ObjectOutputStream;
 import java.lang.reflect.Method;
 import java.util.Base64;
