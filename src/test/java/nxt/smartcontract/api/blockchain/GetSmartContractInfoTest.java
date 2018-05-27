@@ -9,8 +9,9 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
 import java.util.HashMap;
-import nxt.smartcontract.api.Account;
-import nxt.smartcontract.api.utils.SmartContract;
+import nxt.smartcontract.api.SmartAccount;
+import nxt.smartcontract.api.blockchain.request.SmartCall;
+import nxt.smartcontract.api.SmartClass;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -47,9 +48,9 @@ public class GetSmartContractInfoTest {
     public void testGetSmartContractInfo() throws JsonProcessingException, IOException {
         System.out.println("testGetSmartContractInfo");
         long id = 3623824126353402974L;
-        SmartContract contract = new SmartContract(id);
-        Account executingAccount = new Account("copper explain fated truck neat unite branch educated tenuous hum decisive notice");
-        String result = GetSmartContractInfo.getSmartContractInfo(contract, executingAccount);
+        SmartClass contract = new SmartClass(id);
+        SmartAccount executingAccount = new SmartAccount("copper explain fated truck neat unite branch educated tenuous hum decisive notice");
+        String result = SmartCall.getSmartContractInfo(contract, executingAccount);
         HashMap resultMap = new ObjectMapper().readValue(result, HashMap.class);
         System.out.println(resultMap);
         HashMap smartContractInfoMap = new ObjectMapper().readValue(resultMap.get("smartContractInfo").toString(), HashMap.class);
