@@ -24,7 +24,7 @@ When the API call to execute the smart contract is made, the Dynamic Class Loade
 If the call is a set method, the new instance is serialized once again and put on the blockchain.
 
 #####General Overview
-![SJB Overview](https://raw.githubusercontent.com/segun/HelloSmartBean/master/SmartJavaBeans.png)
+![SJB Overview](https://raw.githubusercontent.com/segun/HelloSmartBean/master/sjb_overview.png)
 
 #####Sample Documentation
 
