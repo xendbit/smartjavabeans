@@ -1,4 +1,4 @@
-#Smart Java Beans
+# Smart Java Beans
 
 The NXT platform is a powerful blockchain platform. The only down-side is there are no smart contracts. Our aim is to be able to implement Smart Contracts on the NXT blockchain. We call these Smart Contracts **Smart Java Beans** (or **SJB** for short).
 
@@ -23,12 +23,12 @@ When the API call to execute the smart contract is made, the Dynamic Class Loade
 
 If the call is a set method, the new instance is serialized once again and put on the blockchain.
 
-#####General Overview
+##### General Overview
 ![SJB Overview](https://raw.githubusercontent.com/segun/HelloSmartBean/master/sjb_overview.png)
 
-#####Sample Documentation
+##### Sample Documentation
 
-`
+```
     "documentation": {
         "methods": [{
                 "name": "getVersion",
@@ -56,6 +56,132 @@ If the call is a set method, the new instance is serialized once again and put o
                 "returnType": "void"
             }],
         "name": "ng.com.idempotent.hellosmartbean.VotingBean"
-    },{
-    "byteCode": "yv66vgAAADQAbgoAGwA5BwA6CgACADkJABoAOwkAGgA8BwA9CgAGADkJABoAPgsAPwBACgAGAEEKAAYAQgcAQwoADABECQBFAEYHAEcKAA8AOQgASAoADwBJCgBKAEsIAEwKAA8ATQoATgBPCgAMAFAKAAYAUQkAGgBSBwBTBwBUBwBVAQAHdmVyc2lvbgEAAUkBAApyZWdpc3RlcmVkAQAPTGphdmEvdXRpbC9TZXQ7AQAJU2lnbmF0dXJlAQA1TGphdmEvdXRpbC9TZXQ8TG54dC9zbWFydGNvbnRyYWN0L2FwaS9TbWFydEFjY291bnQ7PjsBAAZ2b3RlcnMBAAV2b3RlZAEAE0xqYXZhL3V0aWwvSGFzaE1hcDsBAExMamF2YS91dGlsL0hhc2hNYXA8TG54dC9zbWFydGNvbnRyYWN0L2FwaS9TbWFydEFjY291bnQ7TGphdmEvbGFuZy9Cb29sZWFuOz47AQAGPGluaXQ+AQADKClWAQAEQ29kZQEAD0xpbmVOdW1iZXJUYWJsZQEACWdldFZvdGVycwEAESgpTGphdmEvdXRpbC9TZXQ7AQA3KClMamF2YS91dGlsL1NldDxMbnh0L3NtYXJ0Y29udHJhY3QvYXBpL1NtYXJ0QWNjb3VudDs+OwEADWdldFJlZ2lzdGVyZWQBAA1yZWdpc3RlclZvdGVyAQAnKExueHQvc21hcnRjb250cmFjdC9hcGkvU21hcnRBY2NvdW50OylWAQAEdm90ZQEADVN0YWNrTWFwVGFibGUBAApnZXRWZXJzaW9uAQADKClJAQAKc2V0VmVyc2lvbgEABChJKVYBAApTb3VyY2VGaWxlAQAPVm90aW5nQmVhbi5qYXZhDAAnACgBABFqYXZhL3V0aWwvSGFzaFNldAwAHwAgDAAjACABABFqYXZhL3V0aWwvSGFzaE1hcAwAJAAlBwBWDABXAFgMAFkAWAwAWgBbAQARamF2YS9sYW5nL0Jvb2xlYW4MAFwAXQcAXgwAXwBgAQAXamF2YS9sYW5nL1N0cmluZ0J1aWxkZXIBAAZWb3RlciAMAGEAYgcAYwwAZABlAQAdIHRyaWVkIHRvIHZvdGUgbW9yZSB0aGFuIG9uY2UMAGYAZQcAZwwAaABpDABqAGsMAGwAbQwAHQAeAQArbmcvY29tL2lkZW1wb3RlbnQvaGVsbG9zbWFydGJlYW4vVm90aW5nQmVhbgEAEGphdmEvbGFuZy9PYmplY3QBAB9ueHQvc21hcnRjb250cmFjdC9hcGkvU21hcnRCZWFuAQANamF2YS91dGlsL1NldAEAA2FkZAEAFShMamF2YS9sYW5nL09iamVjdDspWgEAC2NvbnRhaW5zS2V5AQADZ2V0AQAmKExqYXZhL2xhbmcvT2JqZWN0OylMamF2YS9sYW5nL09iamVjdDsBAAxib29sZWFuVmFsdWUBAAMoKVoBABBqYXZhL2xhbmcvU3lzdGVtAQADZXJyAQAVTGphdmEvaW8vUHJpbnRTdHJlYW07AQAGYXBwZW5kAQAtKExqYXZhL2xhbmcvU3RyaW5nOylMamF2YS9sYW5nL1N0cmluZ0J1aWxkZXI7AQAibnh0L3NtYXJ0Y29udHJhY3QvYXBpL1NtYXJ0QWNjb3VudAEACmdldEFkZHJlc3MBABQoKUxqYXZhL2xhbmcvU3RyaW5nOwEACHRvU3RyaW5nAQATamF2YS9pby9QcmludFN0cmVhbQEAB3ByaW50bG4BABUoTGphdmEvbGFuZy9TdHJpbmc7KVYBAAd2YWx1ZU9mAQAWKFopTGphdmEvbGFuZy9Cb29sZWFuOwEAA3B1dAEAOChMamF2YS9sYW5nL09iamVjdDtMamF2YS9sYW5nL09iamVjdDspTGphdmEvbGFuZy9PYmplY3Q7ACEAGgAbAAEAHAAEAAIAHQAeAAAAEgAfACAAAQAhAAAAAgAiABIAIwAgAAEAIQAAAAIAIgASACQAJQABACEAAAACACYABwABACcAKAABACkAAABKAAMAAQAAACYqtwABKrsAAlm3AAO1AAQquwACWbcAA7UABSq7AAZZtwAHtQAIsQAAAAEAKgAAABIABAAAABMABAAVAA8AFgAaABcAAQArACwAAgApAAAAHQABAAEAAAAFKrQABbAAAAABACoAAAAGAAEAAAAaACEAAAACAC0AAQAuACwAAgApAAAAHQABAAEAAAAFKrQABLAAAAABACoAAAAGAAEAAAAeACEAAAACAC0AAQAvADAAAQApAAAAKAACAAIAAAAMKrQABCu5AAkCAFexAAAAAQAqAAAACgACAAAAIgALACMAAQAxADAAAQApAAAAhwADAAIAAABWKrQACCu2AAqZADUqtAAIK7YAC8AADLYADZkAJLIADrsAD1m3ABASEbYAEiu2ABO2ABISFLYAErYAFbYAFiq0AAgrBLgAF7YAGFcqtAAFK7kACQIAV7EAAAACACoAAAAWAAUAAAAnABwALAA9AC4ASgAvAFUAMAAyAAAAAwABPQABADMANAABACkAAAAdAAEAAQAAAAUqtAAZrAAAAAEAKgAAAAYAAQAAADQAAQA1ADYAAQApAAAAIgACAAIAAAAGKhu1ABmxAAAAAQAqAAAACgACAAAAOQAFADoAAQA3AAAAAgA4"
-}`
+    }
+```
+
+## Examples
+
+### Example one: SimpleBean.
+
+```
+import nxt.smartcontract.api.SmartBean;
+
+public class SimpleSJB implements SmartBean {
+
+    int version;
+    
+    @Override
+    public int getVersion() {
+        return version;
+    }
+
+    @Override
+    public void setVersion(int version) {
+        this.version = version;
+    }    
+}
+```
+
+### Example two: Sending money from one account to another.
+This type of bean must extend SmartTransaction because it will perform a transaction on the blockchain.
+
+```
+package ng.com.idempotent.hellosmartbean;
+
+import java.io.StringWriter;
+import nxt.Account;
+import nxt.Attachment;
+import nxt.smartcontract.api.SmartAccount;
+import nxt.smartcontract.api.SmartBean;
+import nxt.smartcontract.api.blockchain.request.ParameterParser;
+import nxt.smartcontract.api.blockchain.request.SmartRequest;
+import nxt.smartcontract.api.blockchain.request.SmartTransaction;
+import nxt.smartcontract.api.utils.Constants;
+import org.json.simple.JSONStreamAware;
+
+/**
+ *
+ * @author aardvocate
+ */
+public class SimpleSJB extends SmartTransaction implements SmartBean {
+
+    int version;
+
+    @Override
+    public int getVersion() {
+        return version;
+    }
+
+    @Override
+    public void setVersion(int version) {
+        this.version = version;
+    }
+
+    public String sendMoney(SmartAccount sender, SmartAccount recipient, Long amountNQT) throws Exception {
+        SmartRequest smartRequest = new SmartRequest(Attachment.ORDINARY_PAYMENT);
+        smartRequest.putParameter("recipient", recipient.getAddress());
+        smartRequest.putParameter("secretPhrase", sender.getPassphrase());
+        smartRequest.putParameter("feeNQT", Constants.ONE_NXT + "");
+        smartRequest.putParameter("deadline", "6");
+
+        long recipientId = ParameterParser.getAccountId(smartRequest, "recipient", false);
+        Account senderAccount = ParameterParser.getSenderAccount(smartRequest);
+        
+        JSONStreamAware json = createTransaction(smartRequest, senderAccount, recipientId, amountNQT);
+        
+        StringWriter stringWriter = new StringWriter();
+        json.writeJSONString(stringWriter);
+        return stringWriter.getBuffer().toString();
+    }    
+}
+```
+
+### Example 3: pushing the SJB to the blockchain
+
+```
+    public void testPushSmartContract() throws Exception {
+        File f = new File("logs");
+        f.mkdirs();
+        String passphrase = "Baba fi owo kan idodo omo oni dodo ni dodo ilu wa";
+        SmartAccount account = new SmartAccount(passphrase);
+        File source = new File("/Users/aardvocate/src/HelloSmartBean/src/main/java/ng/com/idempotent/hellosmartbean", "HelloSJBWorld.java");
+        String className = "ng.com.idempotent.hellosmartbean.HelloSJBWorld";
+        String s = SmartCall.createSmartContract(account, source, className);
+        Assert.assertNotNull(s);
+        ObjectMapper om = new ObjectMapper();
+        HashMap responseMap = om.readValue(s, HashMap.class);
+        Assert.assertTrue(responseMap.containsKey("smartContractId"));
+        System.err.println(responseMap.get("smartContractId"));
+    }
+``` 
+
+### Example 4: executing smart contract 
+
+```
+    public void testExecuteSendMoney() throws Exception {
+        System.out.println("testExecuteSendMoney");
+        //account that owns the smart contract
+        SmartAccount owner = new SmartAccount(1565770067262084023L);
+        long id = 7241189096096398119L;
+        //this is the account calling the smart contract. This account will bear the fees
+        SmartAccount executingAccount = new SmartAccount("copper explain fated truck neat unite branch educated tenuous hum decisive notice");
+        
+        SmartAccount sender = new SmartAccount("Baba fi owo kan idodo omo oni dodo ni dodo ilu wa");
+        SmartAccount recipient = new SmartAccount(2595880067262094023L);
+        
+        String fullyQualifiedClassName = "ng.com.idempotent.hellosmartbean.HelloSJBWorld";        
+        
+        SmartMethod smartMethod = new SmartMethod("sendMoney");
+        smartMethod.setParameterTypes(SmartAccount.class, SmartAccount.class, Long.class);
+        smartMethod.setParameterValues(sender, recipient, (100 * Constants.ONE_NXT));
+        SmartClass smartClass = new SmartClass(owner, id, fullyQualifiedClassName);
+        smartClass.setSmartMethod(smartMethod);
+        
+        String result = SmartCall.executeSmartContract(smartClass, executingAccount);
+        HashMap resultMap = new ObjectMapper().readValue(result, HashMap.class);
+        assertTrue(resultMap.containsKey("transactionJSON"));
+        assertTrue(resultMap.containsKey("transaction"));
+    }        
+```
+
+Check the src folder and test folder for more examples.
