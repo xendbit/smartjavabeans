@@ -145,7 +145,7 @@ public class ExecuteSmartContractTest {
         //String parameters = "Hello, New Gree"
     }
     
-    //@Test
+    @Test
     public void testExecuteURLGet() throws Exception {
         System.out.println("testExecuteURLGet");
         SmartAccount owner = new SmartAccount(1565770067262084023L);
@@ -166,7 +166,7 @@ public class ExecuteSmartContractTest {
         assertTrue(resultMap.containsKey("transaction"));
     }    
     
-    @Test
+    //@Test
     public void testExecuteSendMoney() throws Exception {
         System.out.println("testExecuteSendMoney");
         SmartAccount owner = new SmartAccount(1565770067262084023L);
@@ -190,7 +190,7 @@ public class ExecuteSmartContractTest {
         assertTrue(resultMap.containsKey("transaction"));
     }        
     
-    @Test
+    //@Test
     public void testExecuteSendMessage() throws Exception {
         System.out.println("testExecuteSendMessage");
         SmartAccount owner = new SmartAccount(1565770067262084023L);

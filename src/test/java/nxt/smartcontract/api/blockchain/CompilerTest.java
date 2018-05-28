@@ -5,6 +5,7 @@
  */
 package nxt.smartcontract.api.blockchain;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import static org.junit.Assert.assertEquals;
 
 import java.io.ByteArrayInputStream;
@@ -66,8 +67,7 @@ public class CompilerTest {
         HashMap<String, Object> compiledMap = compile(source, className);
         //System.out.println(compiledMap);
         assertTrue(compiledMap.containsKey("documentation"));
-        assertTrue(compiledMap.containsKey("byteCode"));
-        System.out.println(compiledMap.get("byteCode").toString());
+        assertTrue(compiledMap.containsKey("byteCode"));        
 
         byte[] byteCode = Base64.getDecoder().decode(compiledMap.get("byteCode").toString());
 
@@ -117,14 +117,14 @@ public class CompilerTest {
         assertEquals(s, "This is a new Greeting");
     }
 
-    //@Test
+    @Test
     public void testVoting() throws Exception {
         System.out.println("CompilerTest.testVoting");
         String className = "ng.com.idempotent.hellosmartbean.VotingBean";
         File source = new File("/Users/aardvocate/src/HelloSmartBean/src/main/java/ng/com/idempotent/hellosmartbean", "VotingBean.java");
         HashMap<String, Object> compiledMap = new HashMap<>();
         compiledMap = compile(source, className);
-        System.out.println(compiledMap);
+        System.out.println(new ObjectMapper().writeValueAsString(compiledMap));
         assertTrue(compiledMap.containsKey("documentation"));
         assertTrue(compiledMap.containsKey("byteCode"));
         System.out.println(compiledMap.get("byteCode").toString());

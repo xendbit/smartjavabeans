@@ -97,7 +97,7 @@ public class HelloSJBWorld extends SmartTransaction implements SmartBean {
         Account senderAccount = ParameterParser.getSenderAccount(smartRequest);
         
         JSONStreamAware json = createTransaction(smartRequest, senderAccount, recipientId, amountNQT);
-        return processRequest(json);
+        return processResponse(json);
     }
 
     public String sendMessage(SmartAccount sender, SmartAccount recipient, String message) throws Exception {
@@ -112,10 +112,10 @@ public class HelloSJBWorld extends SmartTransaction implements SmartBean {
         Account senderAccount = ParameterParser.getSenderAccount(smartRequest);
         
         JSONStreamAware json = createTransaction(smartRequest, senderAccount, recipientId, 0, smartRequest.getAttachmentType());
-        return processRequest(json);
+        return processResponse(json);
     }    
 
-    public String processRequest(JSONStreamAware json) throws Exception {
+    public String processResponse(JSONStreamAware json) throws Exception {
         StringWriter stringWriter = new StringWriter();
         json.writeJSONString(stringWriter);
         return stringWriter.getBuffer().toString();
