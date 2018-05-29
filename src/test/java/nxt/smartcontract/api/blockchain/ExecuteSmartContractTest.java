@@ -48,12 +48,11 @@ public class ExecuteSmartContractTest {
     //@Test
     public void testExecuteSetSimpleType() throws IOException {
         System.out.println("testExecuteSetSimpleType");
-        SmartAccount owner = new SmartAccount(1565770067262084023L);       
         long id = 1666950666991748874L;
 
         //Testing Get Simple Type --- Might fail if the smart contract have less than 1 confirmation
         String fullyQualifiedClassName = "ng.com.idempotent.hellosmartbean.HelloSJBWorld";
-        SmartClass smartContract = new SmartClass(owner, id, fullyQualifiedClassName);
+        SmartClass smartContract = new SmartClass(id, fullyQualifiedClassName);
         SmartMethod smartMethod = new SmartMethod("getGreeting");
         smartContract.setSmartMethod(smartMethod);
 
@@ -74,12 +73,11 @@ public class ExecuteSmartContractTest {
     //@Test
     public void testExecuteGetSimpleType() throws IOException {
         System.out.println("testExecuteSetSimpleType");
-        SmartAccount owner = new SmartAccount(1565770067262084023L);       
         long id = 1666950666991748874L;
 
         //Testing Get Simple Type --- Might fail if the smart contract have less than 1 confirmation
         String fullyQualifiedClassName = "ng.com.idempotent.hellosmartbean.HelloSJBWorld";
-        SmartClass smartContract = new SmartClass(owner, id, fullyQualifiedClassName);
+        SmartClass smartContract = new SmartClass(id, fullyQualifiedClassName);
         SmartMethod smartMethod = new SmartMethod("getGreeting");
         smartContract.setSmartMethod(smartMethod);
 
@@ -97,12 +95,11 @@ public class ExecuteSmartContractTest {
     //@Test
     public void testExecuteGetComplexType() throws IOException, ClassNotFoundException {
         System.out.println("testExecuteGetComplexType");
-        SmartAccount owner = new SmartAccount(1565770067262084023L);
         long id = 1666950666991748874L;
         SmartAccount executingAccount = new SmartAccount("copper explain fated truck neat unite branch educated tenuous hum decisive notice");
         
         String fullyQualifiedClassName = "ng.com.idempotent.hellosmartbean.HelloSJBWorld";
-        SmartClass smartContract = new SmartClass(owner, id, fullyQualifiedClassName);
+        SmartClass smartContract = new SmartClass(id, fullyQualifiedClassName);
         
         //Testing Get Complex Type --- Might fail if the set above have less than 1 confirmation
         SmartMethod smartMethod = new SmartMethod("getAccount");
@@ -124,12 +121,11 @@ public class ExecuteSmartContractTest {
     //@Test
     public void testExecuteSetComplexType() throws IOException, ClassNotFoundException {
         System.out.println("testExecuteSetComplexType");
-        SmartAccount owner = new SmartAccount(1565770067262084023L);
         long id = 1666950666991748874L;
         SmartAccount executingAccount = new SmartAccount("copper explain fated truck neat unite branch educated tenuous hum decisive notice");
         
         String fullyQualifiedClassName = "ng.com.idempotent.hellosmartbean.HelloSJBWorld";
-        nxt.smartcontract.api.SmartClass smartContract = new SmartClass(owner, id, fullyQualifiedClassName);
+        nxt.smartcontract.api.SmartClass smartContract = new SmartClass(id, fullyQualifiedClassName);
         
         //Testing Set Complex Type --- Might fail if the smart contract have less than 1 confirmation
         SmartMethod smartMethod = new SmartMethod("setAccount");
@@ -148,7 +144,6 @@ public class ExecuteSmartContractTest {
     @Test
     public void testExecuteURLGet() throws Exception {
         System.out.println("testExecuteURLGet");
-        SmartAccount owner = new SmartAccount(1565770067262084023L);
         long id = 6466152329223480814L;
         SmartAccount executingAccount = new SmartAccount("copper explain fated truck neat unite branch educated tenuous hum decisive notice");
         
@@ -157,7 +152,7 @@ public class ExecuteSmartContractTest {
         SmartMethod smartMethod = new SmartMethod("sendGET");
         smartMethod.setParameterTypes(String.class);
         smartMethod.setParameterValues("http://localhost:8987/nxt?requestType=getAccount&account=1565770067262084023");
-        SmartClass smartClass = new SmartClass(owner, id, fullyQualifiedClassName);
+        SmartClass smartClass = new SmartClass(id, fullyQualifiedClassName);
         smartClass.setSmartMethod(smartMethod);
         
         String result = SmartCall.executeSmartContract(smartClass, executingAccount);
@@ -169,7 +164,6 @@ public class ExecuteSmartContractTest {
     //@Test
     public void testExecuteSendMoney() throws Exception {
         System.out.println("testExecuteSendMoney");
-        SmartAccount owner = new SmartAccount(1565770067262084023L);
         long id = 7241189096096398119L;
         SmartAccount executingAccount = new SmartAccount("copper explain fated truck neat unite branch educated tenuous hum decisive notice");
         
@@ -181,7 +175,7 @@ public class ExecuteSmartContractTest {
         SmartMethod smartMethod = new SmartMethod("sendMoney");
         smartMethod.setParameterTypes(SmartAccount.class, SmartAccount.class, Long.class);
         smartMethod.setParameterValues(sender, recipient, (100 * Constants.ONE_NXT));
-        SmartClass smartClass = new SmartClass(owner, id, fullyQualifiedClassName);
+        SmartClass smartClass = new SmartClass(id, fullyQualifiedClassName);
         smartClass.setSmartMethod(smartMethod);
         
         String result = SmartCall.executeSmartContract(smartClass, executingAccount);
@@ -193,7 +187,6 @@ public class ExecuteSmartContractTest {
     //@Test
     public void testExecuteSendMessage() throws Exception {
         System.out.println("testExecuteSendMessage");
-        SmartAccount owner = new SmartAccount(1565770067262084023L);
         long id = 7241189096096398119L;
         SmartAccount executingAccount = new SmartAccount("copper explain fated truck neat unite branch educated tenuous hum decisive notice");
         
@@ -205,7 +198,7 @@ public class ExecuteSmartContractTest {
         SmartMethod smartMethod = new SmartMethod("sendMessage");
         smartMethod.setParameterTypes(SmartAccount.class, SmartAccount.class, String.class);
         smartMethod.setParameterValues(sender, recipient, "Hello Smart Java Beans World");
-        SmartClass smartClass = new SmartClass(owner, id, fullyQualifiedClassName);
+        SmartClass smartClass = new SmartClass(id, fullyQualifiedClassName);
         smartClass.setSmartMethod(smartMethod);
         
         String result = SmartCall.executeSmartContract(smartClass, executingAccount);
