@@ -164,7 +164,7 @@ public class ExecuteSmartContractTest {
     @Test
     public void testExecuteSendMoney() throws Exception {
         System.out.println("testExecuteSendMoney");
-        long id = 2924178540988556843L;
+        long id = 5386226739023004142L;
         SmartAccount executingAccount = new SmartAccount("copper explain fated truck neat unite branch educated tenuous hum decisive notice");
         
         SmartAccount sender = new SmartAccount("Baba fi owo kan idodo omo oni dodo ni dodo ilu wa");

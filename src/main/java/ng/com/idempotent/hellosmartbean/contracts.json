@@ -1,0 +1,15 @@
+{
+    "all": false,    
+    "contracts": [
+        {
+            "id": "1666950666991748874",
+            "execute": true,
+            "methods": []
+        },
+        {
+            "id": "7241189096096398119",
+            "execute": true,
+            "methods": ["sendMoney", "getAccountBalance", "sendMessage"]
+        }        
+    ]
+}
