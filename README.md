@@ -2,17 +2,21 @@
 
 The NXT platform is a powerful blockchain platform. The only down-side is there are no smart contracts. Our aim is to be able to implement Smart Contracts on the NXT blockchain. We call these Smart Contracts **Smart Java Beans** (or **SJB** for short).
 
-***The design considerations are as follows.***
+## Design Considerations
 
 1. SJBs are normal java beans that can be run on the NXT blockchain.
-2. SJBs implement Serializable so that their states can be stored on the blockchain.
+2. SJBs are stateful. see [Stateless & Stateful Smart Contracts](https://bravenewcoin.com/news/stateless-and-stateful-smart-contracts-lessons-in-flexibility-scale-and-security-from-digital-circuit-design/)
 3. There's a helper interface called `Contract`. All SJBs must implement this interface and provide implementations for all its methods.
 4. SJBs must have access to all the APIs exposed by the NXT platform.
 5. SJBs must follow the below naming conventions
 	1.	Methods that must return a value **MUST** begin with get, e.g `public long getAccountBalance()`. These types of methods cost 0 to execute and doesn't affect the state of the SJB on the blockchain
-	2.	Methods that have side effects must return void. e.g `public void setAccountBalance(int long)`. After the execution of this method, the state of the SJB object will be altered.
+	2.	Every other method except 1. above will have side effects. i.e will cause a new state for the contract to be stored on the chain. Methods that have side effects must return void. e.g `public void setAccountBalance(int long)`. After the execution of this method, the state of the SJB object will be altered.
 	3. SJBs must provide a setter and getter for a variable named `version`, the type of `version` is int. This is enforced by the `Contract` interface.
 
+## Contract State Management
+When a get request is sent to the contract, not state is generated, therefore, we don't need to manage state. But when any other method is executed, first the node checks if it has enabled smart contract execution, next it fires up the custom class loader and object input stream, loads the class and the object and runs the method. It then also runs the method `setVersion(getVersion() + 1)` on the contract. Finally, a trasanction is queued to save this new state on the blockchain. However before the state is saved, it checks that `[SmartContractCurrentlyOnBlockchain].getVersion()` is equal to `[IncomingSmartContractState].getVersion() + 1`. If this condition is true, the new state is saved.
+
+## ClassLoader and ObjectInputStream
 We need a custom dynamic class loader, that could load classes into memory from bytecode. We also need a custom ObjectInputStream that can use the Dynamic class loader. All these is put together in this project [InMemoryJavaCompiler](https://github.com/segun/InMemoryJavaCompiler) to compile java source file into bytecode. After compilation, the InMemory compiler returns the bytecode and a documentation (json) generated from the source file (sample included below)
 
 After compilation, the bytecode and documentation are sent in an API call to the blockchain. The API will store us the Dynamic Class Loader to load the bytecode, then an instance is created. The Custom ObjectInputStream is used to serialize the instance. A base64 encoded String of both the bytecode and the serialized instance are stored in the DB along with the documentation.
@@ -23,10 +27,10 @@ When the API call to execute the smart contract is made, the Dynamic Class Loade
 
 If the call is a set method, the new instance is serialized once again and put on the blockchain.
 
-##### General Overview
+## General Overview Diagram
 ![SJB Overview](https://raw.githubusercontent.com/segun/HelloSmartBean/master/sjb_overview.png)
 
-##### Sample Documentation
+## Sample Documentation
 
 ```
     "documentation": {
@@ -136,7 +140,7 @@ public class SimpleSJB extends SmartTransaction implements SmartBean {
 }
 ```
 
-### Example 3: pushing the SJB to the blockchain
+### Example 3: Pushing the SJB to the blockchain
 
 ```
     public void testPushSmartContract() throws Exception {
@@ -155,7 +159,7 @@ public class SimpleSJB extends SmartTransaction implements SmartBean {
     }
 ``` 
 
-### Example 4: executing smart contract 
+### Example 4: executing smart contract methods
 
 ```
     public void testExecuteSendMoney() throws Exception {

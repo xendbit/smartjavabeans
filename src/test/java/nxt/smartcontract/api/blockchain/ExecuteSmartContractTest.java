@@ -141,7 +141,7 @@ public class ExecuteSmartContractTest {
         //String parameters = "Hello, New Gree"
     }
     
-    @Test
+    //@Test
     public void testExecuteURLGet() throws Exception {
         System.out.println("testExecuteURLGet");
         long id = 6466152329223480814L;
@@ -161,10 +161,10 @@ public class ExecuteSmartContractTest {
         assertTrue(resultMap.containsKey("transaction"));
     }    
     
-    //@Test
+    @Test
     public void testExecuteSendMoney() throws Exception {
         System.out.println("testExecuteSendMoney");
-        long id = 7241189096096398119L;
+        long id = 2924178540988556843L;
         SmartAccount executingAccount = new SmartAccount("copper explain fated truck neat unite branch educated tenuous hum decisive notice");
         
         SmartAccount sender = new SmartAccount("Baba fi owo kan idodo omo oni dodo ni dodo ilu wa");
