@@ -23,6 +23,7 @@ import org.junit.Test;
  */
 public class CreateSmartContractTest {
 
+    public String baseURL;
     public CreateSmartContractTest() {
     }
 
@@ -36,6 +37,7 @@ public class CreateSmartContractTest {
 
     @Before
     public void setUp() {
+         baseURL = "http://idempotent.com.ng:8987/nxt?";
     }
 
     @After
@@ -50,7 +52,7 @@ public class CreateSmartContractTest {
         SmartAccount account = new SmartAccount(passphrase);
         File source = new File("/Users/aardvocate/src/HelloSmartBean/src/main/java/ng/com/idempotent/hellosmartbean", "HelloSJBWorld.java");
         String className = "ng.com.idempotent.hellosmartbean.HelloSJBWorld";
-        String s = SmartCall.createSmartContract(account, source, className);        
+        String s = SmartCall.createSmartContract(baseURL, account, source, className);        
         Assert.assertNotNull(s);
         ObjectMapper om = new ObjectMapper();
         HashMap responseMap = om.readValue(s, HashMap.class);

@@ -18,11 +18,12 @@ import nxt.smartcontract.api.blockchain.request.SmartTransaction;
 import org.json.simple.JSONStreamAware;
 
 public class HelloSJBWorld extends SmartTransaction implements SmartBean {
-
+    
     int version = 1;
 
     private String greeting = "Hello Smart Java Beans World";
     private SmartAccount account = new SmartAccount();
+    private String baseURL;
 
     public void setAccount(SmartAccount account) {
         this.account = account;
@@ -114,10 +115,10 @@ public class HelloSJBWorld extends SmartTransaction implements SmartBean {
         JSONStreamAware json = createTransaction(smartRequest, senderAccount, recipientId, 0, smartRequest.getAttachmentType());
         return processResponse(json);
     }    
-
+    
     public String processResponse(JSONStreamAware json) throws Exception {
         StringWriter stringWriter = new StringWriter();
         json.writeJSONString(stringWriter);
         return stringWriter.getBuffer().toString();
-    }
+    }      
 }

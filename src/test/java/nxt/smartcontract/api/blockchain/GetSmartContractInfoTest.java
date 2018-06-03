@@ -25,6 +25,8 @@ import static org.junit.Assert.*;
  */
 public class GetSmartContractInfoTest {
 
+    public String baseURL;
+    
     public GetSmartContractInfoTest() {
     }
 
@@ -38,6 +40,7 @@ public class GetSmartContractInfoTest {
 
     @Before
     public void setUp() {
+        baseURL = "http://idempotent.com.ng:8987/nxt?";
     }
 
     @After
@@ -47,10 +50,10 @@ public class GetSmartContractInfoTest {
     @Test
     public void testGetSmartContractInfo() throws JsonProcessingException, IOException {
         System.out.println("testGetSmartContractInfo");
-        long id = 3623824126353402974L;
+        long id = 8381013826859170805L;
         SmartClass contract = new SmartClass(id);
         SmartAccount executingAccount = new SmartAccount("copper explain fated truck neat unite branch educated tenuous hum decisive notice");
-        String result = SmartCall.getSmartContractInfo(contract, executingAccount);
+        String result = SmartCall.getSmartContractInfo(baseURL, contract, executingAccount);
         HashMap resultMap = new ObjectMapper().readValue(result, HashMap.class);
         System.out.println(resultMap);
         HashMap smartContractInfoMap = new ObjectMapper().readValue(resultMap.get("smartContractInfo").toString(), HashMap.class);
