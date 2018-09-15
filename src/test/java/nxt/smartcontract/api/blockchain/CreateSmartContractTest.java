@@ -37,7 +37,7 @@ public class CreateSmartContractTest {
 
     @Before
     public void setUp() {
-         baseURL = "http://idempotent.com.ng:8987/nxt?";
+         baseURL = "http://localhost:8987/nxt?";
     }
 
     @After
@@ -45,6 +45,22 @@ public class CreateSmartContractTest {
     }
 
     @Test
+    public void testCreateSenderListenerContract() throws Exception {
+        File f = new File("logs");
+        f.mkdirs();
+        String passphrase = "Baba fi owo kan idodo omo oni dodo ni dodo ilu wa";
+        SmartAccount account = new SmartAccount(passphrase);
+        File source = new File("/Users/aardvocate/src/HelloSmartBean/src/main/java/ng/com/idempotent/hellosmartbean", "SenderListener.java");
+        String className = "ng.com.idempotent.hellosmartbean.SenderListener";
+        String s = SmartCall.createSmartContract(baseURL, account, source, className);        
+        Assert.assertNotNull(s);
+        ObjectMapper om = new ObjectMapper();
+        HashMap responseMap = om.readValue(s, HashMap.class);
+        Assert.assertTrue(responseMap.containsKey("smartContractId"));
+        System.err.println(responseMap.get("smartContractId"));        
+    }
+    
+    //@Test
     public void testPushSmartContract() throws Exception {
         File f = new File("logs");
         f.mkdirs();
