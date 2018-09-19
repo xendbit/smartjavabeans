@@ -5,6 +5,7 @@
  */
 package ng.com.idempotent.hellosmartbean;
 
+import java.util.zip.CRC32;
 import nxt.Transaction;
 import nxt.smartcontract.api.SmartAccount;
 import nxt.smartcontract.api.SmartBean;
@@ -18,6 +19,7 @@ import nxt.util.Logger;
  */
 public class SenderListener extends SmartTransaction implements TransactionListener, SmartBean {
     int version = 1;
+    public static final long serialVersionUID = 1L;
 
     @Override
     public void setVersion(int version) {

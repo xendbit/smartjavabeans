@@ -19,6 +19,7 @@ import org.json.simple.JSONStreamAware;
 
 public class HelloSJBWorld extends SmartTransaction implements SmartBean {
     
+    public static final long serialVersionUID = 1;
     int version = 1;
 
     private String greeting = "Hello Smart Java Beans World";

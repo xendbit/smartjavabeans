@@ -18,6 +18,7 @@ import nxt.smartcontract.api.SmartBean;
 @SuppressWarnings("unchecked")
 public class VotingBean implements SmartBean {
     private int version;
+    public static final long serialVersionUID = 1L;
     private final Set<SmartAccount> registered = new HashSet<>();
     private final Set<SmartAccount> voters = new HashSet<>();    
     private final HashMap<SmartAccount, Boolean> voted = new HashMap();
@@ -55,5 +56,5 @@ public class VotingBean implements SmartBean {
     @Override
     public void setVersion(int version) {
         this.version = version;
-    }        
+    }       
 }
